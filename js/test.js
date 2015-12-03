@@ -1,7 +1,7 @@
 // document.write("abcd")
 
 var ortega = {name:"オルテガ", hp:70, strength:12}
-// var zoma = {name:"オルテガ", hp:70, strength:12}
+var zoma = {name:"オルテガ", hp:70, strength:12}
 
 var nameElement = document.getElementById("name");
 console.info(nameElement.tagName);
