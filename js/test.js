@@ -6,7 +6,7 @@ var ortega = {name:"オルテガ", hp:70, strength:12}
 var nameElement = document.getElementById("name");
 console.info(nameElement.tagName);
 console.info(nameElement.innerText);
-nameElement.innerHTML  = "ぞーま"
+nameElement.innerHTML  = "ゾーマ"
 //console.info(name)
 
 // document.write("<p>"+ortega.name+"</p>")
