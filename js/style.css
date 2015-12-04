@@ -1,0 +1,29 @@
+
+body {font-family: Georgia}
+body {font-size: 20px;}
+
+table {
+  border-collapse: collapse;
+  font-size: 38px;
+}
+th {
+  border: solid 1px;
+  padding: 0.5em;
+  background-color: lightskyblue;
+  text-align: center;
+}
+td {
+  border: solid 1px;
+  padding: 0.5em;
+  text-align: center;
+  font-family: Impact;
+}
+
+caption {
+  font-weight: bold;
+  font-size: 20px;
+  background-color: orange;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
