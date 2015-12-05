@@ -17,25 +17,41 @@ var shidoh_attack = function(){
 };
 */
 
-//キャラクター誕生
-var ortega =
-  {
-    name:"オルテガ", hp:120, strength:12,
-    attack : function(){
-      var takeDamagePoint = (1+Math.floor(Math.random()*10)) + ortega.strength
-      shidoh.hp -= takeDamagePoint
-      document.write("<p>オルテガの攻撃！</p>"+shidoh.name+"に"+takeDamagePoint+"ポイントのダメージを与えた！");
-    }
-  }
 
-var shidoh = {name:"シドー", hp:300, strength:18,
-  attack: function(){
+
+//キャラクター誕生
+var ortega = {
+    name:"オルテガ", hp:120, strength:12,
+    /*attack :
+      function(){
+        var takeDamagePoint = (1+Math.floor(Math.random()*10)) + ortega.strength
+        shidoh.hp -= takeDamagePoint
+        document.write("<p>オルテガの攻撃！</p>"+shidoh.name+"に"+takeDamagePoint+"ポイントのダメージを与えた！");
+      },*/
+      attack2 :
+      function(){
+        var takeDamagePoint = ((1+Math.floor(Math.random()*10)) + ortega.strength)*3
+        shidoh.hp -= takeDamagePoint
+        document.write("<p>オルテガの攻撃！</p>会心の一撃！"+shidoh.name+"に"+takeDamagePoint+"ポイントのダメージを与えた！");
+      }
+}
+
+var shidoh = {name:"シドー", hp:160, strength:18,
+  /*attack:
+    function(){
     var takeDamagePoint = (1+Math.floor(Math.random()*10)) + shidoh.strength
     ortega.hp -= takeDamagePoint
     hpElement.innerHTML = ortega.hp
-    document.write("<p>シドーの攻撃！</p>"+ortega.name+"は"+takeDamagePoint+"ポイントのダメージを受けた！");
-    }
+    document.write("<p>シドーの攻撃！</p>"+ortega.name+"は"+takeDamagePoint+"ポイントのダメージを受けた！")
+  },*/
+  attack2:
+  function(){
+    var takeDamagePoint = (1+Math.floor(Math.random()*10)) + 30
+    ortega.hp -= takeDamagePoint
+    hpElement.innerHTML = ortega.hp
+    document.write("<p>シドーは燃え盛る火炎を吐いた！</p>"+ortega.name+"は"+takeDamagePoint+"ポイントのダメージを受けた！");
   }
+}
 
 //ステータスの表示
 var nameElement = document.getElementById("name");
@@ -66,17 +82,32 @@ function Sattack2(){
   document.write("<p>シドーは燃え盛る火炎を吐いた！</p>"+ortega.name+"は"+takeDamagePoint+"ポイントのダメージを受けた！");
 };
 */
+
+
 //戦闘システム
 var arr = [ortega, shidoh];
-var battle =function(){
+
+var battle =function()
+  {
        var turn = 0;
-       while (0 < arr[0].hp && 0 < arr[1].hp) {
+       while (0 < arr[0].hp && 0 < arr[1].hp)
+          {
+            var dice = (1+Math.floor(Math.random()*10))
+            console.log(dice)
+            if (0 < dice && dice < 6){
+              var attack = function(){
+                      var takeDamagePoint = (1+Math.floor(Math.random()*10)) + arr[turn].strength
+                      arr[1-turn].hp -= takeDamagePoint
+                      document.write("<p>"+arr[turn]+"の攻撃！</p>"+arr[1-turn].name+"に"+takeDamagePoint+"ポイントのダメージ！");
+                    };
+            }else{arr[turn].attack2();}
 
-           arr[turn].attack;
-           turn = 1 - turn;
-           }
+            turn = 1 - turn;
+          };
 
-       };
+        if(arr[0].hp<0){arr[0].hp = 0}else{document.write("You Win")}
+
+  };
 
 
 //実行クラス
