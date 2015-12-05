@@ -1,7 +1,7 @@
 
 //キャラクター誕生
-var ortega = {name:"オルテガ", hp:120, strength:12}
-var shidoh = {name:"シドー", hp:300, strength:18}
+var ortega = {name:"オルテガ", hp:120, strength:12, attack:function ortega_attack()}
+var shidoh = {name:"シドー", hp:300, strength:18, attack:function shidoh_attack()}
 
 //ステータスの表示
 var nameElement = document.getElementById("name");
@@ -48,7 +48,7 @@ function battle() {
        var turn = 0;
        while (0 < arr[0].hp && 0 < arr[1].hp) {
 
-           arr[turn]_attack();
+           arr[turn].attack;
 
            }
            turn = 1 - turn;
