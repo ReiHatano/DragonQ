@@ -1,10 +1,10 @@
 
 body {font-family: Georgia}
-body {font-size: 20px;}
+body {font-size: 15px;}
 
 table {
   border-collapse: collapse;
-  font-size: 38px;
+  font-size: 20px;
 }
 th {
   border: solid 1px;
@@ -21,7 +21,7 @@ td {
 
 caption {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   background-color: orange;
   border-radius: 10px;
   padding: 5px;
