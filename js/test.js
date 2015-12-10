@@ -107,33 +107,7 @@ document.getElementById('form').select.onchange = function(){
 
 
 
-/*
-var arr = [ortega, shidoh];
 
-attack1();
-attack2();
-Sattack1();
-Sattack2();
-
-
-
-
-console.log(shidoh.hp);
-console.log(ortega.hp);
-*/
-
-
-/*
-function charactor(name,hp,strength){
-  this.name = name;
-  this.hp = hp;
-  this.strength = strength;
-}
-
-var ortega = new charactor('オルテガ',120,12);
-
-console.log(ortega);
-*/
 /*
 //オルテガの攻撃パターン
 var ortega_attack = function(){
