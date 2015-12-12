@@ -14,7 +14,7 @@
 <tr>
   <th>名前</th>
   <th>HP</th>
-  <th>STR</th>
+  <th>攻撃力</th>
 </tr>
 <tr>
   <td id="name"></td>
@@ -24,18 +24,10 @@
 </table>
 
 <section>
-<input type="button" value="薬草で回復" onclick="useHerb()">
+<input type="button" value="薬草を使う" onclick="useHerb()">
 </section>
 
-<section>
-  <form name="item">
-    <select name="select">
-      <option value = "薬草">薬草</option>
-      <option value = "弟切草">弟切草</option>
-    </select>
-    <input type = "button" id = "btn" value = "実行">
-  </form>
-</section>
+
 
 <section>
   <form name = "magic">
@@ -43,9 +35,17 @@
     <label><input type = "radio" name = "contact" value = "ギガデイン">ギガデイン</label>
     <input type = "button" id = "btn2" value = "唱える" />
   </form>
-
 </section>
 
+
+<section>
+  <form name = "weapon">
+    <label><input type = "radio" name = "contact" value = "はがねのつるぎ" />はがねのつるぎ</label>
+    <label><input type = "radio" name = "contact" value = "破壊の鉄球">破壊の鉄球</label>
+    <input type = "button" id = "btn3" value = "装備する" />
+    <input type = "button" id = "btn4" value = "装備をはずす" />
+  </form>
+</section>
 
 
 <script src="test.js" type="text/javascript"></script>

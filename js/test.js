@@ -1,36 +1,37 @@
 //DragonQ_JsEdition
 
 //キャラクター誕生
-var ortega = {name:"オルテガ", hp:240, strength:12}
+var ortega = {name:"オルテガ", hp:240, maxHp:240, strength:12, maxStrength:12, equipStatus:0}
 var shidoh = {name:"シドー", hp:160, strength:18}
 
 //やくそう使用
 function useHerb(){
-  ortega.hp+=30;
-  hpElement.innerHTML=ortega.hp;
-};
-
-function useStrongHerb(){
-  ortega.hp+=100;
-  hpElement.innerHTML=ortega.hp;
-};
-
-
-  document.getElementById('btn').onclick = function(){
-    window.alert(document.item.select.value);
+  if((ortega.maxHp-ortega.hp)>=30){
+    ortega.hp+=30;
+    hpElement.innerHTML=ortega.hp;
+    window.alert(ortega.name+"は薬草を食べた！体力が回復した！");
+  }else{
+    ortega.hp=ortega.maxHp;
+    hpElement.innerHTML=ortega.hp;
   }
+};
+
 
 
 //呪文
 function castBaikilt(){
-  ortega.strength=ortega.strength*2;
-  strengthElement.innerHTML=ortega.strength;
+  if(ortega.strength<(ortega.maxStrength*2)){
+    ortega.strength=ortega.strength*2;
+    strengthElement.innerHTML=ortega.strength;
+  window.alert(ortega.name+"はちからが増大した！");
+  }else{
+    window.alert("なにも起こらなかった・・");
+  }
 }
 
 function castGigadein(){
-  shidoh.hp -= 180;
-  hpElement.innerHTML=shidoh.hp;
-  document.write("<p>オルテガは稲妻を呼び寄せた！</p>"+shidoh.name+"に180のダメージ！");
+  shidoh.hp -= 150+(Math.floor(Math.random()*30));
+  window.alert("オルテガは稲妻を呼び寄せた！"+shidoh.name+"に"+(150+(Math.floor(Math.random()*30)))+"ポイントのダメージ！");
   console.log(shidoh.hp);
 }
 
@@ -44,11 +45,50 @@ function castGigadein(){
         castGigadein();
         break;
       }
-
     }
   }
 
+//武器の装備
+function equipWeapon(weaponName, weaponPower){
+  ortega.strength+=weaponPower;
+  strengthElement.innerHTML=ortega.strength;
+  window.alert("オルテガは"+weaponName+"を装備した！");
+}
 
+document.getElementById('btn3').onclick = function(){
+  if (ortega.equipStatus == 0){
+    for(var i=0; i<document.magic.contact.length;i++){
+      if(document.weapon.contact[0].checked){
+        equipWeapon("はがねのつるぎ",7);
+        ortega.equipStatus += 1;
+        break;
+      }else if(document.weapon.contact[1].checked){
+        equipWeapon("破壊の鉄球",125);
+        ortega.equipStatus += 1;
+        break;
+      }
+    }
+  }else{
+    window.alert("これ以上装備できない！");
+  }
+}
+
+
+//武器の装備解除
+document.getElementById('btn4').onclick = function(){
+  if(ortega.equipStatus==1){
+    ortega.equipStatus=0;
+    disarmWeapon();
+  }else{
+    window.alert("何も装備していない！");
+  }
+}
+
+function disarmWeapon(){
+  ortega.strength=12;
+  strengthElement.innerHTML=ortega.strength;
+  window.alert("装備を外した！");
+}
 
 //ステータスの表示
 var nameElement = document.getElementById("name");
@@ -62,11 +102,10 @@ strengthElement.innerHTML = ortega.strength
 
 
 //共通化済みアタック関数
-var attack = function(attackerStrength,defenderHp,attackerName,defenderName){
-  var takeDamagePoint = (1+Math.floor(Math.random()*10)) + attackerStrength;
-  defenderHp -= takeDamagePoint;
-  arr[1-turn].hp = defenderHp;
-  document.write("<p>"+attackerName+"の攻撃！</p>"+defenderName+"に"+takeDamagePoint+"ポイントのダメージ！")
+var attack = function(attacker,defender){
+  var takeDamagePoint = (1+Math.floor(Math.random()*10)) + attacker.strength;
+  defender.hp -= takeDamagePoint;
+  document.write("<p>"+attacker.name+"の攻撃！</p>"+defender.name+"に"+takeDamagePoint+"ポイントのダメージ！")
 };
 
 
@@ -78,7 +117,7 @@ var battle =function()
        turn = 0;
        while (0 < arr[0].hp && 0 < arr[1].hp)
           {
-            attack(arr[turn].strength,arr[1-turn].hp,arr[turn].name,arr[1-turn].name);
+            attack(arr[turn],arr[1-turn]);
             turn = 1 - turn;
             if(ortega.hp<0){ortega.hp=0;};
           };
